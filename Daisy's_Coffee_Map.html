@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       #map {
+        height: 100%;
+        width: 100%;
+        position: fixed !important;
+       }
+    </style>
+  </head>
+  <body>
+	<button type="button" onclick="toggleHeatmap()">Toggle Heatmap</button>
+    <div id="map"></div>
+    <script>
+shops = [
+  {
+    "ID": 28,
+    "Name": "Fabios Gelato EITG",
+    "Price per flOz (£)": 0.34,
+    "Lattitude": 51.948,
+    "Longitude": -0.27951,
+    "Weight": 3
+  },
+  {
+    "ID": 2,
+    "Name": "Kinetic Cycles",
+    "Price per flOz (£)": 1.3,
+    "Lattitude": 51.947405,
+    "Longitude": -0.280064,
+    "Weight": 13
+  },
+  {
+    "ID": 4,
+    "Name": "Café Air",
+    "Price per flOz (£)": 0.25,
+    "Lattitude": 51.947392,
+    "Longitude": -0.278743,
+    "Weight": 2.5
+  },
+  {
+    "ID": 1,
+    "Name": "Pitcher and Piano",
+    "Price per flOz (£)": 0.5,
+    "Lattitude": 51.947612,
+    "Longitude": -0.279262,
+    "Weight": 5
+  },
+  {
+    "ID": 26,
+    "Name": "Hermitage Road Café EITG",
+    "Price per flOz (£)": 0.6,
+    "Lattitude": 51.949506,
+    "Longitude": -0.275338,
+    "Weight": 6
+  },
+  {
+    "ID": 22,
+    "Name": "Gatefold Record Lounge EI",
+    "Price per flOz (£)": 0.28,
+    "Lattitude": 51.949029,
+    "Longitude": -0.27508,
+    "Weight": 2.5
+  },
+  {
+    "ID": 10,
+    "Name": "Groundworks",
+    "Price per flOz (£)": 0.3,
+    "Lattitude": 51.947758,
+    "Longitude": -0.278084,
+    "Weight": 3
+  },
+  {
+    "ID": 7,
+    "Name": "Bar Azita",
+    "Price per flOz (£)": 0.5,
+    "Lattitude": 51.947043,
+    "Longitude": -0.279627,
+    "Weight": 5
+  },
+  {
+    "ID": 5,
+    "Name": "Rosebud Café",
+    "Price per flOz (£)": 0.25,
+    "Lattitude": 51.947962,
+    "Longitude": -0.279346,
+    "Weight": 2.5
+  },
+  {
+    "ID": 16,
+    "Name": "Hitchin Coffee LAB EI",
+    "Price per flOz (£)": 0.3,
+    "Lattitude": 51.946835,
+    "Longitude": -0.278822,
+    "Weight": 3
+  },
+  {
+    "ID": 25,
+    "Name": "Town Fryers TG",
+    "Price per flOz (£)": 0.12,
+    "Lattitude": 51.949275,
+    "Longitude": -0.274951,
+    "Weight": 1
+  },
+  {
+    "ID": 23,
+    "Name": "Gatefold Record Lounge TG",
+    "Price per flOz (£)": 0.28,
+    "Lattitude": 51.949029,
+    "Longitude": -0.27508,
+    "Weight": 2.5
+  },
+  {
+    "ID": 14,
+    "Name": "Frydays TG",
+    "Price per flOz (£)": 0.11,
+    "Lattitude": 51.947165,
+    "Longitude": -0.277625,
+    "Weight": 1
+  },
+  {
+    "ID": 30,
+    "Name": "Prezzo EI",
+    "Price per flOz (£)": 0.73,
+    "Lattitude": 51.949785,
+    "Longitude": -0.277675,
+    "Weight": 7
+  },
+  {
+    "ID": 19,
+    "Name": "Premier Inn (Costa)",
+    "Price per flOz (£)": 0.22,
+    "Lattitude": 51.949323,
+    "Longitude": -0.276325,
+    "Weight": 2
+  },
+  {
+    "ID": 17,
+    "Name": "Hitchin Coffee LAB TG",
+    "Price per flOz (£)": 0.3,
+    "Lattitude": 51.946835,
+    "Longitude": -0.278822,
+    "Weight": 3
+  },
+  {
+    "ID": 12,
+    "Name": "Simmons",
+    "Price per flOz (£)": 0.27,
+    "Lattitude": 51.948551,
+    "Longitude": -0.277549,
+    "Weight": 2.5
+  },
+  {
+    "ID": 11,
+    "Name": "Chia",
+    "Price per flOz (£)": 0.38,
+    "Lattitude": 51.948523,
+    "Longitude": -0.277488,
+    "Weight": 3.5
+  },
+  {
+    "ID": 9,
+    "Name": "Los Reyas Tapas",
+    "Price per flOz (£)": 0.31,
+    "Lattitude": 51.946365,
+    "Longitude": -0.279172,
+    "Weight": 3
+  },
+  {
+    "ID": 15,
+    "Name": "Quotidian Bakery",
+    "Price per flOz (£)": 0.12,
+    "Lattitude": 51.945923,
+    "Longitude": -0.278703,
+    "Weight": 1
+  },
+  {
+    "ID": 3,
+    "Name": "Starbucks",
+    "Price per flOz (£)": 0.16,
+    "Lattitude": 51.947737,
+    "Longitude": -0.277311,
+    "Weight": 1.5
+  },
+  {
+    "ID": 8,
+    "Name": "Chilli Banana",
+    "Price per flOz (£)": 0.46,
+    "Lattitude": 51.946822,
+    "Longitude": -0.279589,
+    "Weight": 4.5
+  },
+  {
+    "ID": 13,
+    "Name": "Frydays EI",
+    "Price per flOz (£)": 0.14,
+    "Lattitude": 51.947165,
+    "Longitude": -0.277625,
+    "Weight": 1
+  },
+  {
+    "ID": 6,
+    "Name": "Hatters Café",
+    "Price per flOz (£)": 0.43,
+    "Lattitude": 51.948123,
+    "Longitude": -0.279178,
+    "Weight": 4
+  },
+  {
+    "ID": 20,
+    "Name": "Hitchin Café EI",
+    "Price per flOz (£)": 0.2,
+    "Lattitude": 51.949135,
+    "Longitude": -0.27522,
+    "Weight": 2
+  },
+  {
+    "ID": 21,
+    "Name": "Hitchin Café TG",
+    "Price per flOz (£)": 0.2,
+    "Lattitude": 51.949135,
+    "Longitude": -0.27522,
+    "Weight": 2
+  },
+  {
+    "ID": 29,
+    "Name": "The Little Deli TG",
+    "Price per flOz (£)": 0.2,
+    "Lattitude": 51.949618,
+    "Longitude": -0.27598,
+    "Weight": 2
+  },
+  {
+    "ID": 18,
+    "Name": "Waitrose",
+    "Price per flOz (£)": 0.17,
+    "Lattitude": 51.950036,
+    "Longitude": -0.281822,
+    "Weight": 1.5
+  },
+  {
+    "ID": 27,
+    "Name": "Hermitage Road Restaurant EI",
+    "Price per flOz (£)": 0.34,
+    "Lattitude": 51.949506,
+    "Longitude": -0.275338,
+    "Weight": 3
+  },
+  {
+    "ID": 31,
+    "Name": "Hitchin Town Football Club TG",
+    "Price per flOz (£)": 0.1,
+    "Lattitude": 51.954524,
+    "Longitude": -0.283709,
+    "Weight": 1
+  },
+  {
+    "ID": 24,
+    "Name": "Town Fryers EI",
+    "Price per flOz (£)": 0.09,
+    "Lattitude": 51.949275,
+    "Longitude": -0.274951,
+    "Weight": 0.5
+  }
+]
+
+function precisionRound(number, precision) {
+  var factor = Math.pow(10, precision);
+  return Math.round(number * factor) / factor;
+}
+
+
+heatmapOn = true;
+      function toggleHeatmap() {
+        heatmapOn = !heatmapOn
+if (heatmapOn) {
+heatmap.setMap(map)
+} else {
+heatmap.setMap(null)
+}
+      }
+
+      /*function changeGradient() {
+        var gradient = [
+          'rgba(0, 255, 255, 0)',
+          'rgba(0, 255, 255, 1)',
+          'rgba(0, 191, 255, 1)',
+          'rgba(0, 127, 255, 1)',
+          'rgba(0, 63, 255, 1)',
+          'rgba(0, 0, 255, 1)',
+          'rgba(0, 0, 223, 1)',
+          'rgba(0, 0, 191, 1)',
+          'rgba(0, 0, 159, 1)',
+          'rgba(0, 0, 127, 1)',
+          'rgba(63, 0, 91, 1)',
+          'rgba(127, 0, 63, 1)',
+          'rgba(191, 0, 31, 1)',
+          'rgba(255, 0, 0, 1)'
+        ]
+        heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+      }
+
+      function changeRadius() {
+        heatmap.set('radius', heatmap.get('radius') ? null : 200);
+      }
+
+      function changeOpacity() {
+        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+      }*/
+
+function getPoints() {
+points = []
+for (var i = 0; i <= shops.length; i++) {
+if (shops[i] != null) {
+    for (var x = 0; x <= shops[i]["Price per flOz (£)"]*100; x++) {
+	points.push(new google.maps.LatLng(shops[i]["Lattitude"], shops[i]["Longitude"]))
+    }
+}
+}
+return points
+}
+
+      function initMap() {
+        var clock_tower = {lat: 51.947441, lng: -0.278762};
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17,
+          center: clock_tower
+        });
+        var clockTowerMarker = new google.maps.Marker({
+          position: clock_tower,
+          map: map,
+          label: "C"
+        });
+
+
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map,
+	radius: 100
+        });
+      
+
+        info = new google.maps.InfoWindow()
+
+for (var i = 0; i <= shops.length; i++) {
+	shop = shops[i]
+
+        marker = new google.maps.Marker({
+          position: {lat: shop["Lattitude"], lng: shop["Longitude"]},
+          map: map,
+          label: shop["Name"][0],
+	  id: shop["ID"]
+        });
+(function(marker,shop){
+	google.maps.event.addListener(marker, 'click', function() {
+		console.log(marker); console.log(shop);
+		distance = google.maps.geometry.spherical.computeDistanceBetween (clockTowerMarker["position"], marker["position"]);
+		content = "Name: " + shop["Name"] + "</br>Price per flOz: £" + shop["Price per flOz (£)"] + "</br>Distance: " + precisionRound(distance, 2) + "m"
+		info.setContent(content)
+		info.open(map, marker)
+	});
+})(marker,shop);
+
+}
+}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9BoiO6IDSLETjyByFq36RfcZmcgKIpGU&callback=initMap&sensor=false&v=3&libraries=geometry,visualization">
+    </script>
+  </body>
+</html>
