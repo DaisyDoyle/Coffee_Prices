@@ -1,3 +1,5 @@
+Project by @daisychaindoyle (daisy you have no public instagram?)
+
 # Coffee_Prices
 
 A data driven exploration into how distance from town centres affects coffee prices.
