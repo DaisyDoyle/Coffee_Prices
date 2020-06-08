@@ -1,4 +1,4 @@
-Project by @daisychaindoyle (daisy insert whatever social medai you want here) I'm just helping out w/ the python stuff :sunglasses:
+Project by [Daisy Doyle](https://www.linkedin.com/in/daisy-doyle-314574125/) all credit goes to her. I'm just helping out w/ the python stuff :sunglasses:
 
 # Coffee_Prices
 
