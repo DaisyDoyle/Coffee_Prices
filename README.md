@@ -11,6 +11,10 @@ Fun data features:
 * Postcode
 * Type of coffee [pub, restaurant, coffee shop]
 * Can maybe scrape with this tool https://github.com/karlicoss/scrapyroo
+I love the idea of finding prices of housing
+I was also considering coffee bean prices and where they came from
+Also see how take away compares to eating in
+I also wanted to look at how recession has affected the businesses I looked at originally as well as seeing a new scene of Hitchin cus so many coffee shops go under its so hipster here drives me mad
 
 # Fun Classifiers
 * If I was to open up a coffee shop on location X, how much should I charge for coffee?
