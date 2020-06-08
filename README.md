@@ -1,4 +1,4 @@
-Project by @daisychaindoyle (daisy you have no public instagram?)
+Project by @daisychaindoyle (daisy insert whatever social medai you want here) I'm just helping out w/ the python stuff :sunglasses:
 
 # Coffee_Prices
 
