@@ -5,8 +5,7 @@ A data driven exploration into how distance from town centres affects coffee pri
 Fun data features:
 * How many Yelp / Google reviews
 * https://github.com/m-wrzr/populartimes
-* Facebook followers
-* Twitter followers
+* Combined social media followers (use sherlock to find entire social media presence)
 * Postcode
 * Type of coffee [pub, restaurant, coffee shop]
 
